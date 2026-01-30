@@ -1,0 +1,401 @@
+body {
+  background-color: oklch(90.59% 0.006 59.64);
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 3rem;
+}
+
+header {
+  padding: 5px;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+#vertical-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  width: 50px; /* Adjust based on your text height */
+
+  display: flex;
+  align-items: center;
+
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  
+  z-index: 1000;
+
+  margin-top: -20px;
+}
+
+#vertical-header a {
+  padding: 10px 0;
+  position: relative;
+  display: inline-block;
+}
+
+#vertical-header a::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 1.5px;
+  height: 0;
+  background: currentColor;
+  transition: height 0.4s ease;
+}
+
+#vertical-header a:hover::after {
+  height: 100%;
+}
+
+#other-vertical-header {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100dvh;
+  width: 50px; /* Adjust based on your text height */
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  writing-mode: vertical-lr;
+  
+  z-index: 1000;
+
+  margin-top: 20px;
+}
+
+#top-page {
+  padding: 0;
+  text-align: center;
+  height: 625px;
+}
+
+#tagline {
+  top: 100px;
+  z-index: 10;
+  position: sticky;
+  margin-bottom: 60px;
+}
+
+#home-page-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+#library,
+#organ-display {
+  width: 250px;
+  display: block;
+}
+
+#classroom {
+  width: 500px;
+}
+
+#logo {
+  width: 150px;
+}
+
+#team {
+  text-align: center;
+  padding: 80px 120px;
+}
+
+#team > h2 {
+  margin: 0 0 60px;
+}
+
+/* Team grid: staggered 2-column layout */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.team-member:nth-child(even) {
+  margin-top: 100px;
+}
+
+.team-member {
+  text-align: left;
+}
+
+.team-member img {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.team-member:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+.team-member h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 20px 0 8px;
+}
+
+
+.team-member p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: oklch(40% 0 0);
+  margin: 0 0 10px 0;
+}
+
+#announcement-message-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+}
+
+#announcement-message-text {
+  text-align: center;
+  width: 1000px;
+  font-size: 1.25rem;
+}
+
+#general-questions {
+  margin-top: 100px;
+}
+
+/* Scroll-driven fade-in animation */
+@keyframes team-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .team-member {
+    animation: team-fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+#tagline-mobile-bottom {
+  display: none;
+}
+
+/* Tagline spans - hidden on desktop, visible on mobile */
+#tagline-top,
+#tagline-bottom {
+  display: inline;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+/* Smaller laptops / large tablets (1200px - 1300px) */
+@media (max-width: 1300px) {
+  #top-page {
+    height: 600px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablets (850px - 1199px) */
+@media (max-width: 1199px) {
+  #top-page {
+    height: 500px;
+  }
+
+  #library,
+  #organ-display {
+    display: none;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  #tagline {
+    margin-bottom: 40px;
+  }
+}
+
+/* Small tablets (768px - 849px) */
+@media (max-width: 849px) {
+  #top-page {
+    height: 450px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  #vertical-header,
+  #other-vertical-header {
+    font-size: 0.75rem;
+    width: 40px;
+  }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 767px) {
+  #body {
+    overflow-x: hidden;
+  }
+
+  #top-page {
+    height: auto;
+    position: relative;
+    display: block;
+    text-align: center;
+  }
+
+  #tagline {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: oklch(90.59% 0.006 59.64);
+    padding: 10px 0;
+    margin-bottom: 0;
+  }
+
+  #tagline-top {
+    display: block;
+    position: static;
+  }
+
+  #tagline-bottom {
+    display: none;
+  }
+
+  #home-page-images {
+    padding: 10px 20px;
+  }
+
+  #classroom {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  #tagline-mobile-bottom {
+    display: block;
+    padding: 10px 0;
+    margin: 0;
+    position: relative;
+    z-index: 11;
+    background-color: oklch(90.59% 0.006 59.64);
+  }
+
+  #vertical-header,
+  #other-vertical-header {
+    font-size: 0.65rem;
+    width: 35px;
+  }
+
+  #vertical-header {
+    margin-top: -15px;
+  }
+
+  #other-vertical-header {
+    margin-top: 15px;
+  }
+
+  #logo {
+    width: 120px;
+  }
+
+  #team {
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .team-member:nth-child(even) {
+    margin-top: 0;
+  }
+
+  #general-questions a {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+}
+
+/* Extra small mobile (below 480px) */
+@media (max-width: 479px) {
+  #vertical-header,
+  #other-vertical-header {
+    font-size: 0.6rem;
+    width: 30px;
+  }
+
+  #logo {
+    width: 100px;
+  }
+
+  #team {
+    padding: 40px 30px;
+  }
+
+  #announcement-message-container {
+    margin-top: 40px;
+  }
+}
